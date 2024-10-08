@@ -54,12 +54,14 @@ function ThemeToggle() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
+  // Efecto para manejar la inicialización del tema
   useEffect(() => {
     setMounted(true)
-    if (!theme) {
+    // Inicializar el tema si no está definido
+    if (theme === undefined) {
       setTheme('system')
     }
-  }, [theme, setTheme])
+  }, [])
 
   if (!mounted) return null
 
@@ -72,7 +74,8 @@ function ThemeToggle() {
   return (
     <button 
       onClick={cycleTheme} 
-      className="text-[10px] text-gray-600 dark:text-gray-400 hover:underline focus:outline-none focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-700 rounded-sm transition-all duration-300"
+      onMouseDown={(e) => e.preventDefault()}
+      className="text-[10px] text-gray-600 dark:text-gray-400 hover:underline focus:outline-none focus:ring-0 rounded-sm transition-all duration-300"
       aria-label="Toggle color theme"
     >
       {theme === 'system' ? 'System' : theme === 'light' ? 'Light' : 'Dark'}
@@ -96,17 +99,11 @@ export function V0Playground() {
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'} font-mono text-sm flex flex-col transition-colors duration-300`}>
       <main className="flex-grow">
         <div className="max-w-4xl mx-auto px-4 py-12">
-          <header className="text-center mb-12">
-            <h1 className="text-3xl font-bold mb-4">v0 playground</h1>
-            <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto leading-relaxed">
-              v0 is my experimental playground where I develop mini-demos in my free time and share them through this page.
-            </p>
-          </header>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {projects.map((project) => (
               <div 
                 key={project.id} 
-                className="border border-gray-200 dark:border-gray-800 rounded-md overflow-hidden transition-all duration-300 hover:border-gray-300 dark:hover:border-gray-700 focus-within:ring-2 focus-within:ring-gray-300 dark:focus-within:ring-gray-700 group"
+                className="border border-neutral-200 dark:border-neutral-600 overflow-hidden transition-all duration-300 hover:border-black dark:hover:border-white focus-within:ring-2 focus-within:ring-gray-300 dark:focus-within:ring-gray-700 group"
               >
                 <div className="relative overflow-hidden">
                   <Image
@@ -134,7 +131,7 @@ export function V0Playground() {
                     {project.technologies.map((tech, index) => (
                       <span 
                         key={index} 
-                        className="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 text-xs px-2 py-1 rounded-sm transition-colors duration-300"
+                        className="bg-gray-100 dark:bg-neutral-900 text-gray-700 dark:text-gray-300 text-xs px-2 py-1 transition-colors duration-300"
                       >
                         {tech}
                       </span>
