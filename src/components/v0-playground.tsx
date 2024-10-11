@@ -1,5 +1,6 @@
 "use client"
 
+
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { useTheme } from "next-themes"
@@ -41,6 +42,38 @@ const projects: Project[] = [
   },
   {
     id: 4,
+    title: "Practical typing",
+    about: "A typing game.",
+    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+    videoUrl: "/type.mp4",
+    projectUrl: "https://b_NpmscEPRAKT.v0.build/",
+  },
+  {
+    id: 5,
+    title: "Ipod Classic",
+    about: "A replica of the iPod Classic.",
+    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+    videoUrl: "/ipod-classic.mp4",
+    projectUrl: "https://b_lGHev2NvKKb.v0.build/",
+  },
+  {
+    id: 6,
+    title: "Login page",
+    about: "A login page.",
+    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+    videoUrl: "/login-three.mp4",
+    projectUrl: "https://b_4g99OUf.v0.build/",
+  },
+  {
+    id: 7,
+    title: "Ipod Classic",
+    about: "A replica of the iPod Classic.",
+    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+    videoUrl: "/ipod-classic.mp4",
+    projectUrl: "https://b_lGHev2NvKKb.v0.build/",
+  },
+  {
+    id: 8,
     title: "Login page",
     about: "A login page.",
     technologies: ["Next.js", "TypeScript", "TailwindCSS"],
@@ -53,10 +86,8 @@ function ThemeToggle() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  // Efecto para manejar la inicialización del tema
   useEffect(() => {
     setMounted(true)
-    // Inicializar el tema si no está definido
     if (theme === undefined) {
       setTheme('system')
     }
@@ -74,7 +105,7 @@ function ThemeToggle() {
     <button 
       onClick={cycleTheme} 
       onMouseDown={(e) => e.preventDefault()}
-      className="text-sm text-gray-600 dark:text-gray-400 hover:underline focus:outline-none focus:ring-0 rounded-sm transition-all duration-300"
+      className="text-sm text-neutral-600 dark:text-neutral-400 hover:underline focus:outline-none focus:ring-0 rounded-sm transition-all duration-300"
       aria-label="Toggle color theme"
     >
       {theme === 'system' ? 'System' : theme === 'light' ? 'Light' : 'Dark'}
@@ -105,7 +136,7 @@ export function V0Playground() {
           </div>
         </div>
       </main>
-      <footer className="py-4 text-center text-gray-600 dark:text-gray-400 text-sm flex justify-center items-center space-x-2">
+      <footer className="py-4 text-center text-neutral-600 dark:text-neutral-400 text-sm flex justify-center items-center space-x-2">
         <span>
           built by{' '}
           <Link href="https://astnai.com" className="hover:underline">
@@ -123,7 +154,6 @@ export function V0Playground() {
   )
 }
 
-// New subcomponent for project cards
 function ProjectCard({ project }: { project: Project }) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -141,7 +171,7 @@ function ProjectCard({ project }: { project: Project }) {
 
   return (
     <div 
-      className="border border-neutral-200 dark:border-neutral-600 overflow-hidden transition-all duration-300 hover:border-black dark:hover:border-white focus-within:ring-2 focus-within:ring-gray-300 dark:focus-within:ring-gray-700 group"
+      className="border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-300 hover:border-neutral-800 dark:hover:border-neutral-50 focus-within:ring-2 focus-within:ring-neutral-300 dark:focus-within:ring-neutral-700 group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -153,27 +183,29 @@ function ProjectCard({ project }: { project: Project }) {
           muted
           autoPlay
           playsInline
-          className="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
           <Link 
             href={project.projectUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-white text-sm hover:underline focus:underline focus:outline-none flex items-center space-x-1 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300"
             aria-label={`View ${project.title} project`}
           >
             <span>View project</span>
-            <ArrowUpRight className="w-3 h-3" />
+            <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
       <div className="p-4">
         <h2 className="text-base font-semibold mb-2">{project.title}</h2>
-        <p className="text-gray-600 dark:text-gray-400 text-xs mb-3 leading-relaxed">{project.about}</p>
-        <div className="flex flex-wrap gap-1">
+        <p className="text-neutral-600 dark:text-neutral-400 text-xs mb-3 leading-relaxed">{project.about}</p>
+        <div className="flex flex-wrap gap-2">
           {project.technologies.map((tech, index) => (
             <span 
               key={index} 
-              className="bg-gray-100 dark:bg-neutral-900 text-gray-700 dark:text-gray-300 text-xs px-2 py-1 transition-colors duration-300"
+              className="bg-neutral-800 dark:bg-neutral-50 text-neutral-50 dark:text-neutral-800 text-xs px-2 py-1 transition-colors duration-300"
             >
               {tech}
             </span>
