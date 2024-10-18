@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
+const url = "https://playground.agustinarias.com";
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -10,22 +12,22 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "v0 playground",
-  description: "Explore innovative web experiments and mini-demos in the v0 playground. Discover cutting-edge projects using Three.js, React, and more.",
-  keywords: "v0 playground, web experiments, 3D projects, interactive demos, front-end development",
+  title: "Playground | Agustín Arias",
   authors: [{ name: "astnai" }],
   creator: "astnai",
+  icons: {
+    icon: "/@icon.png",
+  },
   openGraph: {
-    title: "v0 playground",
-    description: "Explore innovative web experiments and mini-demos in the v0 playground.",
-    url: "https://v0-playground.example.com",
-    siteName: "v0 playground",
+    title: "Playground | Agustín Arias",
+    url: url, 
+    siteName: "Playground | Agustín Arias",
     images: [
       {
-        url: "https://v0-playground.example.com/og-image.jpg",
+        url: `${url}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "v0 playground preview",
+        alt: "Playground preview",
       },
     ],
     locale: "en_US",
@@ -33,10 +35,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "v0 playground",
-    description: "Explore innovative web experiments and mini-demos in the v0 playground.",
+    title: "Playground | Agustín Arias",
     creator: "@astnai",
-    images: ["https://v0-playground.example.com/twitter-image.jpg"],
   },
   robots: {
     index: true,
