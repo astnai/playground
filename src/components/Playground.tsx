@@ -1,20 +1,24 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { ArrowUpRight, SunIcon, MoonIcon } from "lucide-react"
-import { useTheme } from "next-themes"
-import { useEffect, useState, useRef } from "react"
-import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { ArrowUpRight, SunIcon, MoonIcon } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useEffect, useState, useRef } from "react";
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+} from "@/components/ui/hover-card";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 
 type Project = {
-  id: number
-  title: string
-  about: string
-  videoUrl: string 
-  projectUrl: string
-}
+  id: number;
+  title: string;
+  about: string;
+  videoUrl: string;
+  projectUrl: string;
+};
 
 const projects: Project[] = [
   {
@@ -48,7 +52,7 @@ const projects: Project[] = [
 ];
 
 function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
 
   return (
     <Button
@@ -61,28 +65,30 @@ function ThemeToggle() {
       <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
       <span className="sr-only">Toggle theme</span>
     </Button>
-  )
+  );
 }
 
-export function V0Playground() {
-  const [mounted, setMounted] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+export default function Playground() {
+  const [mounted, setMounted] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
+    setMounted(true);
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 0);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   if (!mounted) {
-    return <div className="min-h-screen bg-white dark:bg-black"></div>
+    return <div className="min-h-screen bg-white dark:bg-black"></div>;
   }
 
   return (
-    <div className={`min-h-screen bg-background text-foreground font-mono text-sm flex flex-col transition-colors duration-300`}>
+    <div
+      className={`min-h-screen bg-background text-foreground font-mono text-sm flex flex-col transition-colors duration-300`}
+    >
       <header
         className={`
           sticky top-0 z-50 
@@ -125,15 +131,15 @@ export function V0Playground() {
       </header>
 
       <main className="flex-grow">
-        <div className="max-w-5xl mx-auto px-6 py-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="max-w-5xl mx-auto px-4 py-5 sm:px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {projects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
           </div>
         </div>
       </main>
-      <footer className="mt-40 border-t border-neutral-200 dark:border-neutral-800">
+      <footer className="mt-20 sm:mt-40 border-t border-neutral-200 dark:border-neutral-800">
         <div className="mx-auto max-w-5xl px-4 py-6 text-center text-sm text-muted-foreground sm:px-6">
           Built by{" "}
           <HoverCard>
@@ -142,7 +148,10 @@ export function V0Playground() {
                 astnai
               </span>
             </HoverCardTrigger>
-            <HoverCardContent className="w-80 rounded-none bg-popover shadow-none" sideOffset={22}>
+            <HoverCardContent
+              className="w-80 rounded-none bg-popover shadow-none"
+              sideOffset={22}
+            >
               <div className="flex justify-between space-x-4">
                 <Avatar>
                   <AvatarImage src="https://github.com/astnai.png" />
@@ -150,7 +159,9 @@ export function V0Playground() {
                 </Avatar>
                 <div className="space-y-1 text-left">
                   <h4 className="text-sm font-semibold">@astnai</h4>
-                  <p className="text-sm">Software Engineer from Patagonia, Argentina.</p>
+                  <p className="text-sm">
+                    Software Engineer from Patagonia, Argentina.
+                  </p>
                   <div className="flex items-center pt-2">
                     <Button
                       className="rounded-none border border-neutral-200 bg-transparent text-neutral-800 shadow-none hover:border-black hover:bg-transparent dark:border-neutral-800 dark:bg-transparent dark:text-neutral-100 dark:hover:border-white dark:hover:bg-transparent"
@@ -172,29 +183,28 @@ export function V0Playground() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
 
-  const handleMouseEnter = () => {
+  const handleInteraction = () => {
     if (videoRef.current) {
-      videoRef.current.pause()
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
     }
-  }
-
-  const handleMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.play()
-    }
-  }
+  };
 
   return (
-    <div 
+    <div
       className="border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-300 hover:border-neutral-800 dark:hover:border-neutral-50 focus-within:ring-2 focus-within:ring-neutral-300 dark:focus-within:ring-neutral-700 group"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onClick={handleInteraction}
     >
       <div className="relative overflow-hidden">
         <video
@@ -204,10 +214,10 @@ function ProjectCard({ project }: { project: Project }) {
           muted
           autoPlay
           playsInline
-          className="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-110"
+          className="w-full h-48 sm:h-60 object-cover transition-transform duration-300 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-          <Link 
+          <Link
             href={project.projectUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -221,8 +231,10 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
       <div className="p-4">
         <h2 className="text-base font-semibold mb-2">{project.title}</h2>
-        <p className="text-neutral-600 dark:text-neutral-400 text-xs mb-3 leading-relaxed">{project.about}</p>
+        <p className="text-neutral-600 dark:text-neutral-400 text-xs mb-3 leading-relaxed">
+          {project.about}
+        </p>
       </div>
     </div>
-  )
+  );
 }

@@ -1,7 +1,10 @@
-import { V0Playground } from "@/components/v0-playground";
+import Playground from "@/components/Playground";
 
 export default function Home() {
   return (
-    <V0Playground />
+    <main>
+      <Playground />
+    </main>
   );
 }
+
