@@ -1,72 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowUpRight, SunIcon, MoonIcon } from "lucide-react";
-import { useTheme } from "next-themes";
 import { useEffect, useState, useRef } from "react";
-import {
-  HoverCard,
-  HoverCardTrigger,
-  HoverCardContent,
-} from "@/components/ui/hover-card";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-
-type Project = {
-  id: number;
-  title: string;
-  about: string;
-  videoUrl: string;
-  projectUrl: string;
-};
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Hover Footer",
-    about: "An interactive footer that reveals more on hover.",
-    videoUrl: "/hover-footer.mp4",
-    projectUrl: "https://b_rdv3W9iBYeM.v0.build/",
-  },
-  {
-    id: 2,
-    title: "Pokemon Battle",
-    about: "A Pokémon battle simulator with engaging gameplay.",
-    videoUrl: "/pokemon-battle.mp4",
-    projectUrl: "https://hecosh5.v0.build/",
-  },
-  {
-    id: 3,
-    title: "Ipod Classic",
-    about: "A digital replica of the iPod Classic.",
-    videoUrl: "/ipod-classic.mp4",
-    projectUrl: "https://b_lGHev2NvKKb.v0.build/",
-  },
-  {
-    id: 4,
-    title: "Practical Typing",
-    about: "A game to improve typing speed and accuracy.",
-    videoUrl: "/type.mp4",
-    projectUrl: "https://b_jyzi3ug3h6o.v0.build/",
-  },
-];
-
-function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-
-  return (
-    <Button
-      variant="outline"
-      size="icon"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="rounded-none shadow-none hover:bg-transparent hover:border-black dark:hover:border-white"
-    >
-      <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-      <span className="sr-only">Toggle theme</span>
-    </Button>
-  );
-}
+import { projects, Project } from "@/data/projects";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Playground() {
   const [mounted, setMounted] = useState(false);
@@ -86,102 +25,18 @@ export default function Playground() {
   }
 
   return (
-    <div
-      className={`min-h-screen bg-background text-foreground font-mono text-sm flex flex-col transition-colors duration-300`}
-    >
-      <header
-        className={`
-          sticky top-0 z-50 
-          bg-background/80 backdrop-blur-sm
-          border-b border-transparent
-          transition-all duration-300 
-          ${isScrolled ? "border-gray-200 dark:border-neutral-800" : ""}
-        `}
-      >
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
-          <div className="text-lg font-medium tracking-tight">
-            astnai/playground
-          </div>
-          <div className="flex items-center space-x-2 sm:space-x-4">
-            <ThemeToggle />
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() =>
-                window.open(
-                  "https://x.com/astnai",
-                  "_blank",
-                  "noopener,noreferrer"
-                )
-              }
-              className="rounded-none shadow-none hover:bg-transparent hover:border-black dark:hover:border-white"
-            >
-              <svg
-                className="h-3 w-3 fill-current"
-                height="23"
-                viewBox="0 0 1200 1227"
-                width="23"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z"></path>
-              </svg>
-            </Button>
-          </div>
-        </div>
-      </header>
-
+    <div className="flex flex-col min-h-screen text-sm transition-colors duration-300 bg-background text-foreground">
+      <Header isScrolled={isScrolled} />
       <main className="flex-grow">
-        <div className="max-w-5xl mx-auto px-4 py-5 sm:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+        <div className="max-w-6xl px-4 py-5 mx-auto sm:px-6">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
             {projects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
           </div>
         </div>
       </main>
-      <footer className="mt-20 sm:mt-40 border-t border-neutral-200 dark:border-neutral-800">
-        <div className="mx-auto max-w-5xl px-4 py-6 text-center text-sm text-muted-foreground sm:px-6">
-          Built by{" "}
-          <HoverCard>
-            <HoverCardTrigger asChild>
-              <span className="cursor-pointer font-medium text-foreground">
-                astnai
-              </span>
-            </HoverCardTrigger>
-            <HoverCardContent
-              className="w-80 rounded-none bg-popover shadow-none"
-              sideOffset={22}
-            >
-              <div className="flex justify-between space-x-4">
-                <Avatar>
-                  <AvatarImage src="https://github.com/astnai.png" />
-                  <AvatarFallback>AA</AvatarFallback>
-                </Avatar>
-                <div className="space-y-1 text-left">
-                  <h4 className="text-sm font-semibold">@astnai</h4>
-                  <p className="text-sm">
-                    Software Engineer from Patagonia, Argentina.
-                  </p>
-                  <div className="flex items-center pt-2">
-                    <Button
-                      className="rounded-none border border-neutral-200 bg-transparent text-neutral-800 shadow-none hover:border-black hover:bg-transparent dark:border-neutral-800 dark:bg-transparent dark:text-neutral-100 dark:hover:border-white dark:hover:bg-transparent"
-                      asChild
-                    >
-                      <a
-                        href="https://twitter.com/astnai"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Follow on Twitter
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </HoverCardContent>
-          </HoverCard>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
@@ -203,7 +58,7 @@ function ProjectCard({ project }: { project: Project }) {
 
   return (
     <div
-      className="border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-300 hover:border-neutral-800 dark:hover:border-neutral-50 focus-within:ring-2 focus-within:ring-neutral-300 dark:focus-within:ring-neutral-700 group"
+      className="border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-500 hover:border-neutral-300 hover:shadow-md dark:hover:shadow-neutral-800 hover:shadow-md dark:hover:border-neutral-700 focus-within:ring-2 focus-within:ring-neutral-300 dark:focus-within:ring-neutral-700 group"
       onClick={handleInteraction}
     >
       <div className="relative overflow-hidden">
@@ -214,14 +69,14 @@ function ProjectCard({ project }: { project: Project }) {
           muted
           autoPlay
           playsInline
-          className="w-full h-48 sm:h-60 object-cover transition-transform duration-300 group-hover:scale-110"
+          className="object-cover w-full h-48 transition-transform duration-300 sm:h-60 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+        <div className="absolute inset-0 flex items-center justify-center transition-all duration-300 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100">
           <Link
             href={project.projectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white text-sm hover:underline focus:underline focus:outline-none flex items-center space-x-1 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300"
+            className="flex items-center space-x-1 text-sm text-white transition-transform duration-300 transform translate-y-1 group-hover:translate-y-0 hover:underline focus:underline focus:outline-none"
             aria-label={`View ${project.title} project`}
           >
             <span>View project</span>
@@ -230,8 +85,8 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
       </div>
       <div className="p-4">
-        <h2 className="text-base font-semibold mb-2">{project.title}</h2>
-        <p className="text-neutral-600 dark:text-neutral-400 text-xs mb-3 leading-relaxed">
+        <h2 className="mb-2 text-base font-semibold">{project.title}</h2>
+        <p className="mb-3 text-xs leading-relaxed text-neutral-600 dark:text-neutral-400">
           {project.about}
         </p>
       </div>
