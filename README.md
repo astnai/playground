@@ -1,3 +1,3 @@
-# v0 Playground
+# astnai/playground
 
-A collection of web experiments and mini-demos using v0, showcasing cutting-edge front-end technologies.
+A collection of web experiments.

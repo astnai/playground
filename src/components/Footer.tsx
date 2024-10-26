@@ -1,9 +1,9 @@
 "use client";
 
-import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 export function Footer() {
   return (
@@ -18,16 +18,16 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="cursor-pointer font-medium text-neutral-800 dark:text-neutral-200 hover:underline">
+                <span className="cursor-pointer font-medium text-neutral-800 hover:underline dark:text-neutral-200">
                   astnai
                 </span>
               </Link>
             </HoverCardTrigger>
             <HoverCardContent
-              className="w-80 rounded-none bg-transparent shadow-none"
-              sideOffset={12}
               align="end"
               alignOffset={-200}
+              className="w-80 rounded-none bg-transparent shadow-none"
+              sideOffset={12}
             >
               <div className="flex justify-between space-x-4">
                 <Avatar>
@@ -41,8 +41,8 @@ export function Footer() {
                   </p>
                   <div className="flex items-center pt-2">
                     <Button
-                      className="rounded-none border border-neutral-200 bg-transparent text-neutral-800 shadow-none hover:border-black hover:bg-transparent dark:border-neutral-800 dark:bg-transparent dark:text-neutral-100 dark:hover:border-white dark:hover:bg-transparent"
                       asChild
+                      className="rounded-none border border-neutral-200 bg-transparent text-neutral-800 shadow-none hover:border-black hover:bg-transparent dark:border-neutral-800 dark:bg-transparent dark:text-neutral-100 dark:hover:border-white dark:hover:bg-transparent"
                     >
                       <a
                         href="https://twitter.com/astnai"

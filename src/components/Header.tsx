@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 
 function ThemeToggle() {
@@ -14,10 +13,10 @@ function ThemeToggle() {
       variant="outline"
       size="icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="rounded-none bg-transparent hover:bg-trasnparent dark:bg-transparent dark:hover:bg-transparent border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-500 hover:border-neutral-300 hover:shadow-md dark:hover:shadow-neutral-800 dark:hover:border-neutral-700"
+      className="overflow-hidden rounded-none border border-neutral-200 bg-transparent transition-all duration-500 hover:border-neutral-300 hover:bg-trasnparent hover:shadow-md dark:border-neutral-800 dark:bg-transparent dark:hover:border-neutral-700 dark:hover:bg-transparent dark:hover:shadow-neutral-800"
     >
-      <SunIcon className="h-[1.2rem] w-[1.2rem] transition-all rotate-0 scale-100 dark:-rotate-90 dark:scale-0" />
-      <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] transition-all rotate-90 scale-0 dark:rotate-0 dark:scale-100" />
+      <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
       <span className="sr-only">Toggle theme</span>
     </Button>
   );
@@ -25,13 +24,11 @@ function ThemeToggle() {
 
 export function Header() {
   return (
-    <header
-      className="sticky top-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-sm"
-    >
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm transition-all duration-300">
       <div className="flex items-center justify-between py-4">
         <Link
           href="https://agustinarias.com"
-          className="text-lg font-medium tracking-normal group"
+          className="group text-lg font-medium tracking-normal"
         >
           <span className="group-hover:underline">astnai</span>/playground
         </Link>
@@ -47,10 +44,10 @@ export function Header() {
                 "noopener,noreferrer"
               )
             }
-            className="rounded-none bg-transparent hover:bg-trasnparent border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-500 hover:border-neutral-300 hover:shadow-md dark:hover:shadow-neutral-800 dark:hover:border-neutral-700"
+            className="overflow-hidden rounded-none border border-neutral-200 bg-transparent transition-all duration-500 hover:border-neutral-300 hover:bg-trasnparent hover:shadow-md dark:border-neutral-800 dark:hover:border-neutral-700 dark:hover:shadow-neutral-800"
           >
             <svg
-              className="w-3 h-3 fill-current"
+              className="h-3 w-3 fill-current"
               height="23"
               viewBox="0 0 1200 1227"
               width="23"

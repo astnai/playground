@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import "./globals.css";
 
 const url = "https://pg.agustinarias.com";
+const title = "Playground | Agustín Arias";
+const description = "Explore Agustín Arias' playground of web development projects and experiments.";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -11,19 +13,27 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Playground | Agustín Arias",
-  authors: [{ name: "astnai" }],
-  creator: "astnai",
+  title,
+  description,
+  authors: [{ name: "Agustín Arias", url: "https://agustinarias.com" }],
+  creator: "Agustín Arias",
+  publisher: "Agustín Arias",
+  metadataBase: new URL(url),
+  alternates: {
+    canonical: "/",
+  },
   icons: {
-    icon: "/@icon.png",
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "Playground | Agustín Arias",
-    url: url, 
-    siteName: "Playground | Agustín Arias",
+    title,
+    description,
+    url,
+    siteName: title,
     images: [
       {
-        url: `${url}/og-image.jpg`,
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Playground preview",
@@ -34,8 +44,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Playground | Agustín Arias",
+    title,
+    description,
     creator: "@astnai",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -50,15 +62,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+interface RootLayoutProps {
   children: React.ReactNode;
-}>) {
+}
+
+export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} antialiased max-w-6xl mx-auto px-4 bg-white dark:bg-black`}
+        className={`${inter.variable} mx-auto max-w-6xl bg-white px-4 antialiased dark:bg-black`}
       >
         <ThemeProvider
           attribute="class"
