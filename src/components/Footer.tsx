@@ -24,7 +24,7 @@ export function Footer() {
               </Link>
             </HoverCardTrigger>
             <HoverCardContent
-              className="w-80 rounded-none bg-popover shadow-none"
+              className="w-80 rounded-none bg-transparent shadow-none"
               sideOffset={12}
               align="end"
               alignOffset={-200}
