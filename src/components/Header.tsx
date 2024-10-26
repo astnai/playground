@@ -14,7 +14,7 @@ function ThemeToggle() {
       variant="outline"
       size="icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="rounded-none bg-transparent hover:bg-trasnparent border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-500 hover:border-neutral-300 hover:shadow-md dark:hover:shadow-neutral-800 dark:hover:border-neutral-700"
+      className="rounded-none bg-transparent hover:bg-trasnparent dark:bg-transparent dark:hover:bg-transparent border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-500 hover:border-neutral-300 hover:shadow-md dark:hover:shadow-neutral-800 dark:hover:border-neutral-700"
     >
       <SunIcon className="h-[1.2rem] w-[1.2rem] transition-all rotate-0 scale-100 dark:-rotate-90 dark:scale-0" />
       <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] transition-all rotate-90 scale-0 dark:rotate-0 dark:scale-100" />
