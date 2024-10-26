@@ -58,7 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} antialiased`}
+        className={`${inter.variable} antialiased max-w-6xl mx-auto px-4 bg-white dark:bg-black`}
       >
         <ThemeProvider
           attribute="class"

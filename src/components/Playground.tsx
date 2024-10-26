@@ -9,15 +9,9 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function Playground() {
   const [mounted, setMounted] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   if (!mounted) {
@@ -25,10 +19,10 @@ export default function Playground() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen text-sm transition-colors duration-300 bg-background text-foreground">
-      <Header isScrolled={isScrolled} />
+    <div className="flex flex-col min-h-screen text-sm transition-colors duration-300 text-foreground">
+      <Header />
       <main className="flex-grow">
-        <div className="max-w-6xl px-4 py-5 mx-auto sm:px-6">
+        <div className="py-5 mx-auto">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
             {projects.map((project) => (
               <ProjectCard key={project.id} project={project} />
@@ -58,7 +52,7 @@ function ProjectCard({ project }: { project: Project }) {
 
   return (
     <div
-      className="border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-500 hover:border-neutral-300 hover:shadow-md dark:hover:shadow-neutral-800 hover:shadow-md dark:hover:border-neutral-700 focus-within:ring-2 focus-within:ring-neutral-300 dark:focus-within:ring-neutral-700 group"
+      className="border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-500 hover:border-neutral-300 hover:shadow-md dark:hover:shadow-neutral-800 dark:hover:border-neutral-700 focus-within:ring-2 focus-within:ring-neutral-300 dark:focus-within:ring-neutral-700 group"
       onClick={handleInteraction}
     >
       <div className="relative overflow-hidden">

@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { SunIcon, MoonIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -13,7 +14,7 @@ function ThemeToggle() {
       variant="outline"
       size="icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="rounded-none shadow-none hover:bg-transparent hover:border-black dark:hover:border-white transition-all duration-300"
+      className="rounded-none bg-transparent hover:bg-trasnparent border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-500 hover:border-neutral-300 hover:shadow-md dark:hover:shadow-neutral-800 dark:hover:border-neutral-700"
     >
       <SunIcon className="h-[1.2rem] w-[1.2rem] transition-all rotate-0 scale-100 dark:-rotate-90 dark:scale-0" />
       <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] transition-all rotate-90 scale-0 dark:rotate-0 dark:scale-100" />
@@ -22,18 +23,12 @@ function ThemeToggle() {
   );
 }
 
-interface HeaderProps {
-  isScrolled: boolean;
-}
-
-export function Header({ isScrolled }: HeaderProps) {
+export function Header() {
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-sm border-b border-transparent ${
-        isScrolled ? "border-gray-200 dark:border-neutral-800" : ""
-      }`}
+      className="sticky top-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-sm"
     >
-      <div className="flex items-center justify-between max-w-6xl px-4 py-4 mx-auto sm:px-6">
+      <div className="flex items-center justify-between py-4">
         <Link
           href="https://agustinarias.com"
           className="text-lg font-medium tracking-normal group"
@@ -52,7 +47,7 @@ export function Header({ isScrolled }: HeaderProps) {
                 "noopener,noreferrer"
               )
             }
-            className="rounded-none shadow-none hover:bg-transparent hover:border-black dark:hover:border-white transition-all duration-300"
+            className="rounded-none bg-transparent hover:bg-trasnparent border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-500 hover:border-neutral-300 hover:shadow-md dark:hover:shadow-neutral-800 dark:hover:border-neutral-700"
           >
             <svg
               className="w-3 h-3 fill-current"
