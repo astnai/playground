@@ -4,19 +4,32 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { useEffect, useState } from "react";
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDarkTheme = theme === 'dark' || (theme === 'system' && isSystemDark);
 
   return (
     <Button
       variant="outline"
       size="icon"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="overflow-hidden rounded-none border border-neutral-200 bg-transparent transition-all duration-500 hover:border-neutral-300 hover:bg-trasnparent hover:shadow-md dark:border-neutral-800 dark:bg-transparent dark:hover:border-neutral-700 dark:hover:bg-transparent dark:hover:shadow-neutral-800"
+      onClick={() => setTheme(isDarkTheme ? "light" : "dark")}
+      className="overflow-hidden rounded-none border border-neutral-200 bg-transparent transition-all duration-500 dark:border-neutral-800 dark:bg-transparent sm:hover:border-neutral-300 sm:hover:bg-transparent sm:hover:shadow-md sm:dark:hover:border-neutral-700 sm:dark:hover:shadow-neutral-800"
     >
-      <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      <SunIcon className={`h-[1.2rem] w-[1.2rem] transition-all ${isDarkTheme ? 'rotate-90 scale-0' : 'rotate-0 scale-100'}`} />
+      <MoonIcon className={`absolute h-[1.2rem] w-[1.2rem] transition-all ${isDarkTheme ? 'rotate-0 scale-100' : '-rotate-90 scale-0'}`} />
       <span className="sr-only">Toggle theme</span>
     </Button>
   );
@@ -44,7 +57,7 @@ export function Header() {
                 "noopener,noreferrer"
               )
             }
-            className="overflow-hidden rounded-none border border-neutral-200 bg-transparent transition-all duration-500 hover:border-neutral-300 hover:bg-trasnparent hover:shadow-md dark:border-neutral-800 dark:hover:border-neutral-700 dark:hover:shadow-neutral-800"
+            className="overflow-hidden rounded-none border border-neutral-200 bg-transparent transition-all duration-500 dark:border-neutral-800 sm:hover:border-neutral-300 sm:hover:bg-transparent sm:hover:shadow-md sm:dark:hover:border-neutral-700 sm:dark:hover:shadow-neutral-800"
           >
             <svg
               className="h-3 w-3 fill-current"
