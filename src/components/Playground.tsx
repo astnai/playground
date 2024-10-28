@@ -56,7 +56,11 @@ function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <div
-      className="group overflow-hidden border border-neutral-200 transition-all duration-500 hover:border-neutral-300 hover:shadow-md focus-within:ring-2 focus-within:ring-neutral-300 dark:border-neutral-800 dark:hover:border-neutral-700 dark:hover:shadow-neutral-800 dark:focus-within:ring-neutral-700"
+      className="group relative overflow-hidden rounded-sm border border-neutral-200 
+      transition-all duration-500 
+      hover:border-neutral-300 hover:shadow-sm 
+      focus-within:ring-2 focus-within:ring-neutral-300 
+      dark:border-neutral-700 dark:hover:border-neutral-600 dark:hover:shadow-neutral-800 dark:hover:shadow-sm dark:focus-within:ring-neutral-700"
       onClick={handleInteraction}
     >
       <div className="relative overflow-hidden">
@@ -74,7 +78,10 @@ function ProjectCard({ project }: ProjectCardProps) {
             href={project.projectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex transform items-center space-x-1 text-sm text-white transition-transform duration-300 translate-y-1 group-hover:translate-y-0 hover:underline focus:outline-none focus:underline"
+            className="flex transform items-center space-x-1 text-sm text-white 
+            transition-transform duration-300 translate-y-1 
+            group-hover:translate-y-0 hover:underline 
+            focus:outline-none focus:underline"
             aria-label={`View ${project.title} project`}
           >
             <span>View project</span>
@@ -83,8 +90,8 @@ function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </div>
       <div className="p-4">
-        <h2 className="mb-2 text-base font-semibold">{project.title}</h2>
-        <p className="mb-3 text-xs leading-relaxed text-neutral-600 dark:text-neutral-400">
+        <h2 className="mb-2 text-base font-semibold tracking-tight">{project.title}</h2>
+        <p className="mb-2 text-xs font-light leading-relaxed text-neutral-600 dark:text-neutral-400">
           {project.about}
         </p>
       </div>

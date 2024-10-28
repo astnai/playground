@@ -26,7 +26,7 @@ function ThemeToggle() {
       variant="outline"
       size="icon"
       onClick={() => setTheme(isDarkTheme ? "light" : "dark")}
-      className="overflow-hidden rounded-none border border-neutral-200 bg-transparent transition-all duration-500 dark:border-neutral-800 dark:bg-transparent sm:hover:border-neutral-300 sm:hover:bg-transparent sm:hover:shadow-md sm:dark:hover:border-neutral-700 sm:dark:hover:shadow-neutral-800"
+      className="overflow-hidden rounded-sm border border-neutral-200 bg-transparent transition-all duration-200 shadow-none dark:border-neutral-700 hover:shadow-sm sm:hover:border-neutral-300 sm:hover:bg-transparent sm:hover:shadow-sm sm:dark:hover:border-neutral-600 sm:dark:hover:shadow-neutral-800"
     >
       <SunIcon className={`h-[1.2rem] w-[1.2rem] transition-all ${isDarkTheme ? 'rotate-90 scale-0' : 'rotate-0 scale-100'}`} />
       <MoonIcon className={`absolute h-[1.2rem] w-[1.2rem] transition-all ${isDarkTheme ? 'rotate-0 scale-100' : '-rotate-90 scale-0'}`} />
@@ -57,7 +57,7 @@ export function Header() {
                 "noopener,noreferrer"
               )
             }
-            className="overflow-hidden rounded-none border border-neutral-200 bg-transparent transition-all duration-500 dark:border-neutral-800 sm:hover:border-neutral-300 sm:hover:bg-transparent sm:hover:shadow-md sm:dark:hover:border-neutral-700 sm:dark:hover:shadow-neutral-800"
+            className="overflow-hidden rounded-sm border border-neutral-200 bg-transparent transition-all duration-200 shadow-none dark:border-neutral-700 hover:shadow-sm sm:hover:border-neutral-300 sm:hover:bg-transparent sm:hover:shadow-sm sm:dark:hover:border-neutral-600 sm:dark:hover:shadow-neutral-800"
           >
             <svg
               className="h-3 w-3 fill-current"

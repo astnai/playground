@@ -26,7 +26,7 @@ export function Footer() {
             <HoverCardContent
               align="end"
               alignOffset={-200}
-              className="w-80 rounded-none bg-transparent shadow-none"
+              className="w-80 rounded-sm bg-transparent shadow-none"
               sideOffset={12}
             >
               <div className="flex justify-between space-x-4">
@@ -42,7 +42,7 @@ export function Footer() {
                   <div className="flex items-center pt-2">
                     <Button
                       asChild
-                      className="rounded-none border border-neutral-200 bg-transparent text-neutral-800 shadow-none hover:border-black hover:bg-transparent dark:border-neutral-800 dark:bg-transparent dark:text-neutral-100 dark:hover:border-white dark:hover:bg-transparent"
+                      className="text-neutral-900 dark:text-neutral-100 overflow-hidden rounded-sm border border-neutral-200 bg-transparent transition-all duration-200 shadow-none dark:border-neutral-700 hover:shadow-sm sm:hover:border-neutral-300 sm:hover:bg-transparent sm:hover:shadow-sm sm:dark:hover:border-neutral-600 sm:dark:hover:shadow-neutral-800"
                     >
                       <a
                         href="https://twitter.com/astnai"
